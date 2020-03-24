@@ -1,32 +1,54 @@
 const toDoForm = document.querySelector(".js-toDoForm"),
-  toDoInput = toDoForm.querySelector("input"),
+  toDoInput = toDoForm.querySelector(".js-toDoInput"),
   toDoList = document.querySelector(".js-toDoList");
 
-const TODO_LS = "toDos";
+const TODO_LS = "todo";
 
-const toDos = [];
+let toDos = [];
 
-function saveToDos() {
+function renewId() {
+  for (var i = 0; i < toDos.length; i++) {
+    toDos[i].id = i + 1;
+    const toDoListItem = toDoList.querySelectorAll(".toDo__item");
+    toDoListItem[i].id = i + 1;
+  }
+  saveToDo();
+}
+
+function deleteToDo(event) {
+  const btn = event.target;
+  const li = btn.parentNode;
+  toDoList.removeChild(li);
+  const cleanToDos = toDos.filter(function(toDo) {
+    return toDo.id !== parseInt(li.id);
+  });
+  toDos = cleanToDos;
+  renewId();
+}
+
+function saveToDo() {
   localStorage.setItem(TODO_LS, JSON.stringify(toDos));
 }
 
 function paintToDo(text) {
   const li = document.createElement("li");
-  const delBtn = document.createElement("button");
-  delBtn.innerText = "X";
+  li.classList.add("toDo__item");
   const span = document.createElement("span");
+  const delBtn = document.createElement("button");
   const newId = toDos.length + 1;
+  delBtn.innerText = "X";
+  delBtn.addEventListener("click", deleteToDo);
   span.innerText = text;
+  li.id = newId;
   li.appendChild(span);
   li.appendChild(delBtn);
-  li.id = newId;
   toDoList.appendChild(li);
   const toDoObj = {
     text: text,
     id: newId
   };
   toDos.push(toDoObj);
-  saveToDos();
+  saveToDo();
 }
 
 function handleSubmit(event) {
@@ -37,10 +59,10 @@ function handleSubmit(event) {
 }
 
 function loadToDo() {
-  const loadedToDos = localStorage.getItem(TODO_LS);
-  if (toDos !== null) {
-    const parsedToDos = JSON.parse(loadedToDos);
-    parsedToDos.forEach(function(toDo) {
+  const loadedToDo = localStorage.getItem(TODO_LS);
+  if (loadedToDo !== null) {
+    const parsedToDo = JSON.parse(loadedToDo);
+    parsedToDo.forEach(function(toDo) {
       paintToDo(toDo.text);
     });
   }
