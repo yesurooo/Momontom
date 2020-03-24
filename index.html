@@ -7,10 +7,26 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="clock">
-      <h1 class="js-clock">00:00</h1>
+    <div class="js-clock">
+      <h1 class="js-clock__title">00:00</h1>
     </div>
 
+    <form class="js-nameForm">
+      <input
+        type="text"
+        placeholder="WHAT IS YOUR NAME?"
+        class="js-nameForm__input"
+      />
+    </form>
+    <h2 class="js-nameTitle"></h2>
+
+    <form class="js-toDoForm">
+      <input type="text" placeholder="WRITE A TO DO" class="js-toDoInput" />
+    </form>
+    <ul class="js-toDoList"></ul>
+
     <script src="js/clock.js"></script>
+    <script src="js/name.js"></script>
+    <script src="js/todo.js"></script>
   </body>
 </html>
