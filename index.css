@@ -1,9 +1,5 @@
-body {
-  color: #34495e;
-}
-
-.js-form,
-.js-form__input {
+.js-nameForm,
+.js-nameTitle {
   display: none;
 }
 
