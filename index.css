@@ -1,3 +1,54 @@
+@import "reset.css";
+@import url("https://fonts.googleapis.com/css?family=Abel&display=swap");
+
+body {
+  background-color: #4b4b4b;
+  font-family: "Abel", sans-serif;
+  color: #f7f1e3;
+}
+
+.contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.js-clock .js-clock__title {
+  margin-bottom: 20px;
+  font-size: 85px;
+  font-weight: bold;
+}
+
+.js-nameForm .js-nameForm__input,
+.js-toDoForm .js-toDoInput {
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  border-bottom: 1px solid #f7f1e3;
+  color: #f7f1e3;
+  text-align: center;
+}
+
+.js-nameForm .js-nameForm__input {
+  margin-bottom: 10px;
+}
+
+.js-toDoForm .js-toDoInput {
+  margin-bottom: 15px;
+}
+
+.js-nameForm .js-nameForm__input::placeholder,
+.js-toDoForm .js-toDoInput::placeholder {
+  color: #f7f1e3;
+}
+
+.js-nameTitle {
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+
 .js-nameForm,
 .js-nameTitle {
   display: none;
@@ -5,4 +56,35 @@
 
 .showing {
   display: block;
+}
+
+.js-toDoList .toDo__item {
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+
+.js-toDoList .toDo__del {
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #c0392b;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: fadeIn 0.5s linear;
 }
